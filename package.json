@@ -1,0 +1,17 @@
+{
+  "name": "vnfinity-cloud-relay",
+  "version": "1.0.0",
+  "description": "Cloud WebSocket Relay for VNFINITY TikTok Live Connector",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "tiktok-live-connector": "^2.4.3",
+    "ws": "^8.18.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
