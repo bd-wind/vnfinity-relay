@@ -90,26 +90,6 @@ wss.on('connection', (ws, req) => {
     });
 });
 
-// Auto Keep-Alive: Giữ server luôn thức 24/24 trên Render Free
-const RENDER_EXTERNAL_URL = process.env.RENDER_EXTERNAL_URL;
-if (RENDER_EXTERNAL_URL) {
-    console.log(`[Keep-Alive] Đã kích hoạt cơ chế chống ngủ 24/24 cho: ${RENDER_EXTERNAL_URL}`);
-    // Ping lần đầu sau 1 phút
-    setTimeout(async () => {
-        try {
-            await fetch(`${RENDER_EXTERNAL_URL}/ping`);
-            console.log('[Keep-Alive] Ping khởi động thành công!');
-        } catch(e) {}
-    }, 60000);
-
-    // Tự động ping mỗi 10 phút để Render không bao giờ rơi vào chế độ ngủ (Sleep)
-    setInterval(async () => {
-        try {
-            const res = await fetch(`${RENDER_EXTERNAL_URL}/ping`);
-            if (res.ok) console.log('[Keep-Alive] Ping định kỳ thành công - Server thức 24/24!');
-        } catch(e) {}
-    }, 10 * 60 * 1000);
-}
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
